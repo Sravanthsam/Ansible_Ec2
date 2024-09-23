@@ -20,4 +20,4 @@
     image_id: {{ami_id}}
     
     loop: {{instanses}}
-    
+    register: Ec2_instances
