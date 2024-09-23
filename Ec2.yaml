@@ -9,7 +9,7 @@
       - db
     ami_id: ami-09c813fb71547fc4f
     sg_id: sg-0ba0f85038d861a18
-
+    zone: quickbyte.online
   tasks: 
   - name: creating ec2 instance
     amazon.aws.ec2_instance:
@@ -23,3 +23,15 @@
   - name: print 
     ansible.builtin.debug:
       msg: "{{Ec2_instances}}"
+  - name: route 53
+    amazon.aws.route53:
+      state: present
+      zone: "{{ zone }}"
+      record: "{{item.item}}.{{zone}}"
+      type: A
+      ttl: 1
+      value: {{item.instances[0].private_ip_address}}
+      wait: true
+      overwrite: true
+
+    loop: {{Ec2_instances.results}}
