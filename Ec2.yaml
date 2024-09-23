@@ -1,0 +1,23 @@
+- name: Creating instance
+  hosts: local
+  connection: local
+  vars:
+    sub_id: subnet-069451d6f9f457b0f
+    instances:
+      - mysql
+      - frontend
+      - db
+    ami_id: ami-09c813fb71547fc4f
+    sg_id: sg-0ba0f85038d861a18
+
+  tasks: creating ec2 instance
+  - name: creating ec2 instance
+    amazon.aws.ec2_instance:
+    name: {{item}}
+    vpc_subnet_id: {{sub_id}}
+    instance_type: t2.micro
+    security_group: {{sg_id}}
+    image_id: {{ami_id}}
+    
+    loop: {{instanses}}
+    
