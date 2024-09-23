@@ -13,11 +13,11 @@
   tasks: creating ec2 instance
   - name: creating ec2 instance
     amazon.aws.ec2_instance:
-    name: {{item}}
-    vpc_subnet_id: {{sub_id}}
-    instance_type: t2.micro
-    security_group: {{sg_id}}
-    image_id: {{ami_id}}
+      name: {{item}}
+      vpc_subnet_id: {{sub_id}}
+      instance_type: t2.micro
+      security_group: {{sg_id}}
+      image_id: {{ami_id}}
     
-    loop: {{instanses}}
-    register: Ec2_instances
+      loop: {{instanses}}
+      register: Ec2_instances
