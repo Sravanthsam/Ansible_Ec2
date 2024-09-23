@@ -10,7 +10,7 @@
     ami_id: ami-09c813fb71547fc4f
     sg_id: sg-0ba0f85038d861a18
 
-  tasks: creating ec2 instance
+  tasks: 
   - name: creating ec2 instance
     amazon.aws.ec2_instance:
       name: {{item}}
