@@ -19,4 +19,7 @@
       security_group: "{{sg_id}}"
       image_id: "{{ami_id}}"
     loop: "{{instances}}"
-    register: Ec2_instances
+    register: Ec2_instances    # 1. time boto core boto3 error 2. aws authendication issue 3. aws authendication error
+  - name: print 
+    ansible.builtin.debug:
+      msg: "{{Ec2_instances}}"
