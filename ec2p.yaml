@@ -25,7 +25,7 @@
       msg: "{{ec2_instances}}"
 
   - name: "configure route53"
-      amazon.aws.route53:
+    amazon.aws.route53:
         state: present
         zone: "{{zone}}"
         record: "{{item.item}}.{{zone}}"
