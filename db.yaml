@@ -3,7 +3,7 @@
   become: yes
   vars:
     loginpw: Sra@321
-    loginho: quickbyte.online
+    loginho: mysql.quickbyte.online
   tasks:
   - name: install mysql-server
     ansible.builtin.package:
