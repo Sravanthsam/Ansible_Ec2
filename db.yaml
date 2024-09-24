@@ -5,6 +5,10 @@
     loginpw: Sra@321
     loginho: mysql.quickbyte.online
   tasks:
+  - name: install PyMySQL
+    ansible.builtin.pip:
+      name:
+        - PyMySQL
   - name: install mysql-server
     ansible.builtin.package:
       name: mysql-server
