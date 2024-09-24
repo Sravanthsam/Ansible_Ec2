@@ -25,26 +25,26 @@
       msg: "{{ec2_instances}}"
 
   - name: configure route53
-     amazon.aws.route53:
-      state: present
-      zone: "{{zone}}"
-      record: "{{item.item}}.{{zone}}"
-      type: A
-      ttl: 1
-      value: "{{item.instances[0].private_ip_address}}"
-      wait: true
-      overwrite: yes
+      amazon.aws.route53:
+        state: present
+        zone: "{{zone}}"
+        record: "{{item.item}}.{{zone}}"
+        type: A
+        ttl: 1
+        value: "{{item.instances[0].private_ip_address}}"
+        wait: true
+        overwrite: yes
     loop: "{{ec2_instances.results}}"
 
-    - name: configure route53
-     amazon.aws.route53:
-      state: present
-      zone: "{{zone}}"
-      record: "{{item.item}}.{{zone}}"
-      type: A
-      ttl: 1
-      value: "{{item.instances[0].public_ip_address}}"
-      wait: true
-      overwrite: yes
+  - name: configure route53
+      amazon.aws.route53:
+        state: present
+        zone: "{{zone}}"
+        record: "{{item.item}}.{{zone}}"
+        type: A
+        ttl: 1
+        value: "{{item.instances[0].public_ip_address}}"
+        wait: true
+        overwrite: yes
     loop: "{{ec2_instances.results}}" 
     when: item.item =="{{fb}}"
