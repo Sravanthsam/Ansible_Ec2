@@ -39,7 +39,7 @@
   - name: install dependencies
     ansible.builtin.command: npm install
       args:
-        chdir: /app
+      chdir: /app
 
   - name: copy backend service file
     ansible.builtin.copy:
@@ -54,4 +54,4 @@
       state: import
       name: all
       target: app/schema/backend.sql
-      
+
