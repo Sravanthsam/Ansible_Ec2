@@ -16,6 +16,7 @@
       enabled: yes
   - name: connect to mysqlserver
     community.mysql.mysql_db:
+      name: 
       login_user: root
       login_password: "{{loginpw}}"
       login_host: "{{loginho}}"
