@@ -1,6 +1,9 @@
 - name: Database configuration 
   hosts: mysql
   become: yes
+  vars:
+    loginpw: Sra@321
+    loginho: quickbyte.online
   tasks:
   - name: install mysql-server
     ansible.builtin.package:
@@ -11,3 +14,14 @@
       name: mysql-server
       state: started
       enabled: yes
+  - name: connect to mysqlserver
+    community.mysql.mysql_db:
+      login_user: root
+      login_password: "{{loginpw}}"
+      login_host: "{{loginho}}"
+    ignore_errors: true
+    register: mysql_info
+  - name: print mysql_info
+    ansible.builtin.debug:
+      msg: "{{mysql_info}}" 
+   
