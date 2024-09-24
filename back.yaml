@@ -2,6 +2,8 @@
   hosts: backend
   become: yes
   vars:
+    loginpw: Sra@321
+    loginho: mysql.quickbyte.online
   tasks:
   - name: disable nodejs
     ansible.builtin.command: dnf module disable nodejs -y
@@ -39,3 +41,17 @@
       args:
         chdir: /app
 
+  - name: copy backend service file
+    ansible.builtin.copy:
+      src: backend.service
+      dest: /etc/systemd/system/backend.service
+
+  - name: create expense database
+    community.mysql.mysql_db:
+      login_user: root
+      login_password: "{{loginpw}}"
+      login_host: "{{loginho}}"
+      state: import
+      name: all
+      target: app/schema/backend.sql
+      
