@@ -62,5 +62,5 @@
       login_host: "{{loginho}}"
       state: import
       name: all
-      target: app/schema/backend.sql
+      target: /app/schema/backend.sql
 
