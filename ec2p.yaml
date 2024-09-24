@@ -1,0 +1,24 @@
+- name: Ec2 instance and route53 creation
+  hosts: local
+  connection: local
+  vars: 
+    subid: subnet-0eb6acc94aad72b73
+    sgid: sg-0ba0f85038d861a18
+    imageid: ami-09c813fb71547fc4f 
+    instances: 
+    - sql
+    - db
+    - fb
+  tasks:
+  - name: Ec2 instance creation
+    amazon.aws.ec2_instance:
+       name: "{{item}}"
+       vpc_subnet_id: "{{subid}}"
+       instance_type: t2.micro
+       security_group: "{{sgid}}"
+       image_id: "{{imageid}}"
+    loop: "{{instances}}"
+    register: ec2_instances
+  - name: printing the retun values
+    ansible.builtin.debug:
+      msg: ec2_instances
