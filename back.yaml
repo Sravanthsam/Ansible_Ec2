@@ -5,6 +5,12 @@
     loginpw: Sra@321
     loginho: mysql.quickbyte.online
   tasks:
+  - name: install PyMySQL
+    ansible.builtin.pip:
+      name:
+      - PyMySQL
+      executable: pip3.9
+
   - name: disable nodejs
     ansible.builtin.command: dnf module disable nodejs -y
 
@@ -15,7 +21,10 @@
     ansible.builtin.package:
       name: nodejs
       state: present
-  
+      loop:
+      - nodejs
+      - mysql
+
   - name: adding user
     ansible.builtin.user:
       name: expense
