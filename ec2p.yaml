@@ -21,4 +21,4 @@
     register: ec2_instances
   - name: printing the retun values
     ansible.builtin.debug:
-      msg: ec2_instances
+      msg: "{{ec2_instances}}"
